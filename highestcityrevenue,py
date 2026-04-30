@@ -1,0 +1,23 @@
+import pandas as pd
+
+# Take CSV file name as input from user
+file_name = input()
+
+# Read CSV file into pandas DataFrame
+df = pd.read_csv(file_name)
+
+# Create a new column Total = Quantity * Price
+df["Total"] = df["Quantity"] * df["Price"]
+
+# Group data by City and calculate total sales
+city_sales = df.groupby("City")["Total"].sum()
+
+# Find city with highest sales
+best_city = city_sales.idxmax()
+
+# Find total sales of that city
+best_sales = city_sales.max()
+
+# Display result
+print("City with Highest Sales:", best_city)
+print("Total Sales:", best_sales)
